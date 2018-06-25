@@ -1,0 +1,16 @@
+Package: mkmix
+Type: Package
+Title: Constrained Bayesian Linear Mixel Model for Marketing Mix
+Version: 0.1.0
+Author: Leonardo Jofre
+Maintainer: The package maintainer <lnjofre@mat.uc.cl>
+Description: modelo bayesiano mixto restringido para estimacion de elasticidad
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Imports:
+  matlab
+  fastDummies
+  magic
+  MASS
+  invgamma
