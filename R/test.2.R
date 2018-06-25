@@ -6,7 +6,7 @@ X <- data$X
 U <- data$U
 
 # seteamos condiciones iniciales para todos los parametros
-n_iter <- 100000
+n_iter <- 1000
 m <- ncol(U)/2
 n <- length(Y)
 data_sim <- matrix(ncol = 10, nrow = n_iter)
@@ -57,7 +57,7 @@ for (t in 1:n_iter) {
     b.sigma2.g <- (1/2) * t(Y - X %*% beta.g - U %*% eta.g) %*% (Y - X %*% beta.g - U %*% eta.g)
     sigma2.g = rinvgamma(1, shape = a.sigma2.g, rate = b.sigma2.g)
 
-    chain[t, (length(beta.g) + 1):(length(beta.g) + length(eta.g))] <- c(eta.g)
+    chain[t, (length(beta.g) + length(eta.g) + 1):(length(beta.g) + length(eta.g) + 2)] <- sigma2.g
 
     # variabilidad de intercepto aleatorio por factor
     a.tau00_2.g <- m/2
