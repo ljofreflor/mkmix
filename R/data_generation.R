@@ -1,3 +1,14 @@
+#' Generacion de datos simulados
+#'
+#' @description generate data
+#'
+#' @param p number of fix factors
+#' @param m number of random factors
+#' @param n size of sample
+#' @examples
+#' data <- data_generation(p=10, m=10, n=100)
+#' @importFrom fastDummies dummy_columns
+#' @export
 data_generation <- function(p, m, n) {
     "
   generacion de datos artificiales con los que probaremos la estimacion del modelo
@@ -9,7 +20,7 @@ data_generation <- function(p, m, n) {
     # simulacion construccion de la data de entrada
     group <- sort(sample(1:m, n, replace = T))
     # agregar intercepto
-    dummy <- as.matrix(fastDummies::dummy_columns(group)[, -1])
+    dummy <- as.matrix(dummy_columns(group)[, -1])
     # variable longitudinal
     l <- matrix(rnorm(n = n, mean = 0, sd = 1), nrow = n, ncol = 1)
     d <- diag(n)
