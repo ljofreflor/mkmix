@@ -16,6 +16,3 @@ data_generation(p, m, n)
 \description{
 generate data
 }
-\examples{
-data <- data_generation(p=10, m=10, n=100)
-}

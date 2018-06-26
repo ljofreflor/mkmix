@@ -5,9 +5,10 @@
 #' @param p number of fix factors
 #' @param m number of random factors
 #' @param n size of sample
-#' @examples
-#' data <- data_generation(p=10, m=10, n=100)
 #' @importFrom fastDummies dummy_columns
+#' @importFrom stats rnorm
+#' @importFrom MASS mvrnorm
+#' @importFrom magic adiag
 #' @export
 data_generation <- function(p, m, n) {
     "

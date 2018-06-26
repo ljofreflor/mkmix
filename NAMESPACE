@@ -2,4 +2,7 @@
 
 export(combine_matrix)
 export(data_generation)
+importFrom(MASS,mvrnorm)
 importFrom(fastDummies,dummy_columns)
+importFrom(magic,adiag)
+importFrom(stats,rnorm)
