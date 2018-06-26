@@ -2,7 +2,6 @@
 data <- data_generation(p = 3, m = 5, n = 10000)
 
 # podemos testear la generaci<c3><b3>n de datos mediante la libreria
-library(lme4)
 
 
 y <- data$Y

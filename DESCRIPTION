@@ -1,6 +1,6 @@
 Package: mkmix
 Type: Package
-Title: Constrained Bayesian Linear Mixel Model for Marketing Mix
+Title: Constrained Bayesian Linear Mixed Model for Marketing Mix
 Version: 0.1.0
 Author: Leonardo Jofre
 Maintainer: The package maintainer <lnjofre@mat.uc.cl>
@@ -13,4 +13,5 @@ Imports:
   fastDummies,
   magic,
   MASS,
-  invgamma
+  invgamma,
+  lme4
