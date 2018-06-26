@@ -21,7 +21,7 @@ data_generation <- function(p, m, n) {
     A <- matrix(rnorm(n = n * p, mean = 10, sd = 5), n, p)
     A <- d %*% A
     # agregar intercepto
-    X <- cbind(ones(n, 1), A)
+    X <- cbind(matrix(rep(1,n), ncol=1), A)
     # matriz Q que representa la covarianza entre el factor aleatorio del intercepto con la pendiente, en
     # este caso, independientes.
     Q <- matrix(nrow = 2, ncol = 2)
@@ -39,6 +39,6 @@ data_generation <- function(p, m, n) {
     eps <- matrix(rnorm(n = n, mean = 0, sd = sqrt(sigma2)), ncol = 1)
     # generar una variable de respuesta a partir de los datos
     Y <- X %*% beta + U %*% eta + eps
-    list(X = X, U = U, Y = Y, beta = beta, eta = eta, tau00_2 = tau00_2, tau11_2 = tau11_2, sigma2 = sigma2, 
+    list(X = X, U = U, Y = Y, beta = beta, eta = eta, tau00_2 = tau00_2, tau11_2 = tau11_2, sigma2 = sigma2,
         group = group)
 }
