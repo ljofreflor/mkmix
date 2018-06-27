@@ -2,19 +2,22 @@
 #'
 #' @description generate data
 #'
-#' @param p number of fix factors
-#' @param m number of random factors
-#' @param n size of sample
+#' @param n.fixed.effects number of fixed effects
+#' @param n.random.effects n random effects
+#' @param n.sample size of sample
 #' @importFrom fastDummies dummy_columns
 #' @importFrom stats rnorm
 #' @importFrom MASS mvrnorm
 #' @importFrom magic adiag
 #' @export
-data_generation <- function(p, m, n) {
+data.generation <- function(n.fixed.effects, n.random.effects, n.sample) {
     "
   generacion de datos artificiales con los que probaremos la estimacion del modelo
   jerarquico
   "
+    n <- n.sample
+    p <- n.fixed.effects
+    m <- n.random.effects
     sigma2 <- 25
     tau00_2 <- 20
     tau11_2 <- 10
@@ -33,7 +36,7 @@ data_generation <- function(p, m, n) {
     A <- matrix(rnorm(n = n * p, mean = 10, sd = 5), n, p)
     A <- d %*% A
     # agregar intercepto
-    X <- cbind(matrix(rep(1,n), ncol=1), A)
+    X <- cbind(matrix(rep(1, n), ncol = 1), A)
     # matriz Q que representa la covarianza entre el factor aleatorio del intercepto con la pendiente, en
     # este caso, independientes.
     Q <- matrix(nrow = 2, ncol = 2)

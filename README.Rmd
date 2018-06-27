@@ -14,17 +14,12 @@ knitr::opts_chunk$set(
 ```
 # mkmix
 
-The goal of mkmix is to ...
+El objetivo de mkmix es un modelo mixto bayesiano restringido, aplicable al caso muy particular de estimación de elasticidad en retail.
 
-## Installation
+## Instalación
 
-You can install the released version of mkmix from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
-install.packages("mkmix")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+Puede instalar la versión de desarrollo [GitHub](https://github.com/) con:
 
 ``` r
 # install.packages("devtools")

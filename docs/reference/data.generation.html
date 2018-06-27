@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Funciones genericas — combine_matrix • mkmix</title>
+<title>Generacion de datos simulados — data.generation • mkmix</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Funciones genericas — combine_matrix" />
+<meta property="og:title" content="Generacion de datos simulados — data.generation" />
 
-<meta property="og:description" content="Combine Matrix for design matrix of random effects" />
+<meta property="og:description" content="generate data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,29 +92,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Funciones genericas</h1>
+    <h1>Generacion de datos simulados</h1>
     
-    <div class="hidden name"><code>combine_matrix.Rd</code></div>
+    <div class="hidden name"><code>data.generation.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Combine Matrix for design matrix of random effects</p>
+    <p>generate data</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>combine_matrix</span>(<span class='no'>matrix.odd</span>, <span class='no'>matrix.even</span>)</pre>
+    <pre class="usage"><span class='fu'>data.generation</span>(<span class='no'>n.fixed.effects</span>, <span class='no'>n.random.effects</span>, <span class='no'>n.sample</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>matrix.odd</th>
-      <td><p>matrix.odd</p></td>
+      <th>n.fixed.effects</th>
+      <td><p>number of fixed effects</p></td>
     </tr>
     <tr>
-      <th>matrix.even</th>
-      <td><p>matrix.even</p></td>
+      <th>n.random.effects</th>
+      <td><p>n random effects</p></td>
+    </tr>
+    <tr>
+      <th>n.sample</th>
+      <td><p>size of sample</p></td>
     </tr>
     </table>
     

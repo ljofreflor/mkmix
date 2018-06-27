@@ -1,7 +1,6 @@
 #' Funciones genericas
 #'
-#' @description Combine Matrix asdf
-#'
+#' @description Combine Matrix for design matrix of random effects
 #' @param matrix.odd matrix.odd
 #' @param matrix.even matrix.even
 #' @export
