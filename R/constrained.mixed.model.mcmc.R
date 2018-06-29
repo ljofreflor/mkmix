@@ -84,5 +84,5 @@ constrained.mixed.model.mcmc <- function(n.iter, data){
 
   # eliminar los primeros 2000 y saltar de 8 en 8
   index <- seq(from = 2000, to = n.iter, by = 8)
-  list(chain.beta = chain.beta, chain.tau2 = chain.tau2, chain.sigma2= chain.sigma2, chain.eta)
+  list(chain.beta = chain.beta, chain.tau2 = chain.tau2, chain.sigma2 = chain.sigma2, chain.eta = chain.eta)
 }
