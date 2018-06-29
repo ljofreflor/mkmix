@@ -75,7 +75,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>este es un pequeño ejemplo de como usar la librería para nuestro set de prueba</p>
+<p>este es un pequeño ejemplo de como usar la librería para nuestro set de prueba. La libreria mkmix provee un set de datos ‘consumo’ que son datos reales de cantidad vendida, precio, promociones y canales del retail X.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mkmix)
 <span class="kw">library</span>(knitr)
 
@@ -94,7 +94,7 @@ sales.data &lt;-<span class="st"> </span>mkmix<span class="op">::</span><span cl
                                       <span class="dt">log.p =</span> <span class="st">"lP"</span>,
                                       <span class="dt">log.q =</span> <span class="st">"lQ"</span>)
 
-mcmc.sample &lt;-<span class="st"> </span>mkmix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/mkmix/topics/constrained.mixed.model.mcmc">constrained.mixed.model.mcmc</a></span>(<span class="dt">n.iter =</span> <span class="dv">10</span>,
+mcmc.sample &lt;-<span class="st"> </span>mkmix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/mkmix/topics/constrained.mixed.model.mcmc">constrained.mixed.model.mcmc</a></span>(<span class="dt">n.iter =</span> <span class="dv">10000</span>,
                                                    <span class="dt">data =</span> sales.data)</code></pre></div>
 <p>las estimaciones se obtienen obteniendo la moda de la distribución posterior.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ee &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nrow =</span> <span class="kw">ncol</span>(mcmc.sample<span class="op">$</span>chain.eta))
@@ -106,184 +106,188 @@ mcmc.sample &lt;-<span class="st"> </span>mkmix<span class="op">::</span><span c
   bb[i,<span class="dv">1</span>] &lt;-<span class="kw">estimate.mode</span>(mcmc.sample<span class="op">$</span>chain.beta[,i])
 }</code></pre></div>
 <p>las cuales generan los siguientes resultados</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ee, <span class="dt">caption =</span> <span class="st">"estimacion de efectos aleatorios de subrubro marca"</span>)
-<span class="co">#&gt; Warning in kable_markdown(x, padding = padding, ...): The table should have</span>
-<span class="co">#&gt; a header (column names)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(ee) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"random.effects"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ee, <span class="dt">caption =</span> <span class="st">"estimacion de efectos aleatorios de subrubro marca"</span>)</code></pre></div>
 <table class="table">
 <caption>estimacion de efectos aleatorios de subrubro marca</caption>
+<thead><tr class="header">
+<th align="right">random.effects</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.3383929</td>
+<td align="right">0.3468587</td>
 </tr>
 <tr class="even">
-<td align="right">0.2971651</td>
+<td align="right">0.7872366</td>
 </tr>
 <tr class="odd">
-<td align="right">0.0691940</td>
+<td align="right">0.3169200</td>
 </tr>
 <tr class="even">
-<td align="right">-0.0794494</td>
+<td align="right">1.7247173</td>
 </tr>
 <tr class="odd">
-<td align="right">0.0859610</td>
+<td align="right">0.1385529</td>
 </tr>
 <tr class="even">
-<td align="right">0.4312885</td>
+<td align="right">-0.4666918</td>
 </tr>
 <tr class="odd">
-<td align="right">0.2734176</td>
+<td align="right">-0.2157758</td>
 </tr>
 <tr class="even">
-<td align="right">-0.3499978</td>
+<td align="right">0.6391289</td>
 </tr>
 <tr class="odd">
-<td align="right">0.4289885</td>
+<td align="right">-0.2587237</td>
 </tr>
 <tr class="even">
-<td align="right">1.3970129</td>
+<td align="right">-1.4683210</td>
 </tr>
 <tr class="odd">
-<td align="right">0.4825238</td>
+<td align="right">-0.4598644</td>
 </tr>
 <tr class="even">
-<td align="right">-2.7254755</td>
+<td align="right">1.4920903</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0506563</td>
+<td align="right">0.1525955</td>
 </tr>
 <tr class="even">
-<td align="right">2.6148432</td>
+<td align="right">1.5397987</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1458717</td>
+<td align="right">-0.0320211</td>
 </tr>
 <tr class="even">
-<td align="right">1.3010102</td>
+<td align="right">-1.6109181</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1955832</td>
+<td align="right">0.0354692</td>
 </tr>
 <tr class="even">
-<td align="right">0.1432134</td>
+<td align="right">-0.2004138</td>
 </tr>
 <tr class="odd">
-<td align="right">0.2363750</td>
+<td align="right">0.4176171</td>
 </tr>
 <tr class="even">
-<td align="right">0.2833236</td>
+<td align="right">4.4744030</td>
 </tr>
 <tr class="odd">
-<td align="right">0.0716686</td>
+<td align="right">-0.0290799</td>
 </tr>
 <tr class="even">
-<td align="right">0.8171376</td>
+<td align="right">-0.9468433</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1119417</td>
+<td align="right">-0.1735733</td>
 </tr>
 <tr class="even">
-<td align="right">-0.3249278</td>
+<td align="right">0.7411779</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0102309</td>
+<td align="right">0.1640266</td>
 </tr>
 <tr class="even">
-<td align="right">-0.3531141</td>
+<td align="right">0.7708589</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0176828</td>
+<td align="right">0.1048988</td>
 </tr>
 <tr class="even">
-<td align="right">0.0484404</td>
+<td align="right">-0.6860053</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1206761</td>
+<td align="right">0.0254518</td>
 </tr>
 <tr class="even">
-<td align="right">0.7408142</td>
+<td align="right">0.8740192</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1007659</td>
+<td align="right">0.2260368</td>
 </tr>
 <tr class="even">
-<td align="right">-1.1984220</td>
+<td align="right">1.4439564</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0345795</td>
+<td align="right">0.0146529</td>
 </tr>
 <tr class="even">
-<td align="right">-3.6427231</td>
+<td align="right">0.4756617</td>
 </tr>
 <tr class="odd">
-<td align="right">0.0380137</td>
+<td align="right">0.0316645</td>
 </tr>
 <tr class="even">
-<td align="right">0.8625435</td>
+<td align="right">-0.6757599</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.3893893</td>
+<td align="right">-0.0387298</td>
 </tr>
 <tr class="even">
-<td align="right">0.9226848</td>
+<td align="right">-2.5571553</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0248966</td>
+<td align="right">-0.1987925</td>
 </tr>
 <tr class="even">
-<td align="right">-0.9435125</td>
+<td align="right">-1.3288248</td>
 </tr>
 <tr class="odd">
-<td align="right">0.1642660</td>
+<td align="right">0.0525157</td>
 </tr>
 <tr class="even">
-<td align="right">-0.3184877</td>
+<td align="right">-1.0726266</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.1478215</td>
+<td align="right">-0.1820207</td>
 </tr>
 <tr class="even">
-<td align="right">-0.7519408</td>
+<td align="right">-1.2837808</td>
 </tr>
 <tr class="odd">
-<td align="right">-0.0358718</td>
+<td align="right">-0.1688614</td>
 </tr>
 <tr class="even">
-<td align="right">0.1977312</td>
+<td align="right">1.4716799</td>
 </tr>
 <tr class="odd">
-<td align="right">0.0614735</td>
+<td align="right">-0.2390915</td>
 </tr>
 <tr class="even">
-<td align="right">0.7193305</td>
+<td align="right">-0.6130675</td>
 </tr>
 </tbody>
 </table>
 <p>y también</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(bb, <span class="dt">caption =</span> <span class="st">"estimacion de efectos fijos de canales de promoción: intercepto, prensa, tv, catálogo "</span>)
-<span class="co">#&gt; Warning in kable_markdown(x, padding = padding, ...): The table should have</span>
-<span class="co">#&gt; a header (column names)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(bb) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"fixed.effects"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(bb, <span class="dt">caption =</span> <span class="st">"estimacion de efectos fijos de canales de promoción: intercepto, prensa, tv, catálogo "</span>)</code></pre></div>
 <table class="table">
 <caption>estimacion de efectos fijos de canales de promoción: intercepto, prensa, tv, catálogo</caption>
+<thead><tr class="header">
+<th align="right">fixed.effects</th>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">7.6915871</td>
+<td align="right">2.2492808</td>
 </tr>
 <tr class="even">
-<td align="right">0.2516961</td>
+<td align="right">-0.2191471</td>
 </tr>
 <tr class="odd">
-<td align="right">-1.0788816</td>
+<td align="right">0.4365452</td>
 </tr>
 <tr class="even">
-<td align="right">0.0371273</td>
+<td align="right">0.0845543</td>
 </tr>
 </tbody>
 </table>
-<p>se pueden visualizar las cadenas y distribuciones posteriores</p>
+<p>se pueden visualizar las cadenas</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># canera para el segundo efecto fijo (el primero es el intercepto)</span>
 <span class="kw">plot</span>(mcmc.sample<span class="op">$</span>chain.beta[,<span class="dv">2</span>], <span class="dt">type=</span><span class="st">'l'</span>)</code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"></p>
+<p>y distribuciones posteriores</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># densidad empirita del 4 efecto aleatorio de la pendiente </span>
 den.eta.<span class="fl">4.</span>slope &lt;-<span class="st"> </span><span class="kw">density</span>(mcmc.sample<span class="op">$</span>chain.eta[,<span class="dv">8</span>])
 <span class="kw">plot</span>(den.eta.<span class="fl">4.</span>slope)</code></pre></div>

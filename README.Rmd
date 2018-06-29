@@ -27,7 +27,7 @@ devtools::install_github("ljofre/mkmix")
 ```
 ## Example
 
-este es un pequeño ejemplo de como usar la librería para nuestro set de prueba
+este es un pequeño ejemplo de como usar la librería para nuestro set de prueba. La libreria mkmix provee un set de datos 'consumo' que son datos reales de cantidad vendida, precio, promociones y canales del retail X.
 
 ```{r example}
 library(mkmix)
@@ -48,7 +48,7 @@ sales.data <- mkmix::get.mkmix.object(data.frame.in = consumo,
                                       log.p = "lP",
                                       log.q = "lQ")
 
-mcmc.sample <- mkmix::constrained.mixed.model.mcmc(n.iter = 10,
+mcmc.sample <- mkmix::constrained.mixed.model.mcmc(n.iter = 10000,
                                                    data = sales.data)
 ```
 
@@ -69,24 +69,27 @@ for(i in 1:ncol(mcmc.sample$chain.beta)) {
 ```
 
 
-
 las cuales generan los siguientes resultados
 
 ``` {r result='asis'}
+colnames(ee) <- c("random.effects")
 kable(ee, caption = "estimacion de efectos aleatorios de subrubro marca")
 ```
  y también 
 ``` {r result='asis'}
-
+colnames(bb) <- c("fixed.effects")
 kable(bb, caption = "estimacion de efectos fijos de canales de promoción: intercepto, prensa, tv, catálogo ")
 ```
 
-se pueden visualizar las cadenas y distribuciones posteriores 
+se pueden visualizar las cadenas 
 
 ``` {r}
 # canera para el segundo efecto fijo (el primero es el intercepto)
 plot(mcmc.sample$chain.beta[,2], type='l')
 ```
+
+
+y distribuciones posteriores 
 
 ``` {r}
 # densidad empirita del 4 efecto aleatorio de la pendiente 
