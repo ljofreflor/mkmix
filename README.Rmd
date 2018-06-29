@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 ```
 # mkmix
 
-El objetivo de mkmix es un modelo mixto bayesiano restringido, aplicable al caso muy particular de estimación de elasticidad en retail.
+El objetivo de mkmix es un modelo mixto bayesiano, aplicable al caso muy particular de estimación de elasticidad en retail.
 
 ## Instalación
 
@@ -27,24 +27,69 @@ devtools::install_github("ljofre/mkmix")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+este es un pequeño ejemplo de como usar la librería para nuestro set de prueba
 
 ```{r example}
-## basic example code
+library(mkmix)
+library(knitr)
+
+estimate.mode <- function(x) {
+  temp <- density(x)
+  temp$x[which.max(temp$y)]
+}
+
+data("consumo")
+
+sales.data <- mkmix::get.mkmix.object(data.frame.in = consumo,
+                                      fixed.effects = c("PRENSA",
+                                                        "TV",
+                                                        "CATALOGO"),
+                                      random.effect = "RUBRO_MARCA",
+                                      log.p = "lP",
+                                      log.q = "lQ")
+
+mcmc.sample <- mkmix::constrained.mixed.model.mcmc(n.iter = 10,
+                                                   data = sales.data)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+las estimaciones se obtienen obteniendo la moda de la distribución posterior.
 
-```{r cars}
-summary(cars)
+```{r}
+ee <- matrix(nrow = ncol(mcmc.sample$chain.eta))
+for(i in 1:ncol(mcmc.sample$chain.eta)) {
+  ee[i,1] <-estimate.mode(mcmc.sample$chain.eta[,i])
+}
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+bb <- matrix(nrow = ncol(mcmc.sample$chain.beta))
+for(i in 1:ncol(mcmc.sample$chain.beta)) {
+  bb[i,1] <-estimate.mode(mcmc.sample$chain.beta[,i])
+}
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+
+
+las cuales generan los siguientes resultados
+
+``` {r result='asis'}
+kable(ee, caption = "estimacion de efectos aleatorios de subrubro marca")
+```
+ y también 
+``` {r result='asis'}
+
+kable(bb, caption = "estimacion de efectos fijos de canales de promoción: intercepto, prensa, tv, catálogo ")
+```
+
+se pueden visualizar las cadenas y distribuciones posteriores 
+
+``` {r}
+# canera para el segundo efecto fijo (el primero es el intercepto)
+plot(mcmc.sample$chain.beta[,2], type='l')
+```
+
+``` {r}
+# densidad empirita del 4 efecto aleatorio de la pendiente 
+den.eta.4.slope <- density(mcmc.sample$chain.eta[,8])
+plot(den.eta.4.slope)
+```
